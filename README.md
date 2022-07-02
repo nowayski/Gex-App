@@ -4,7 +4,7 @@
 This is currently a barebones project with very simple styling and only a test JSON for creation of an
 ItemCard component.
 
-##Plans for the future:
+## Plans for the future:
 I plan on implementing the future features:
 Searching by category.
 Searching by name.
