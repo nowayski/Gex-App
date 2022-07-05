@@ -11,6 +11,7 @@ function App() {
     firstLetter: "b",
     page: 1,
   });
+  const [hasQuery, setHasQuery] = useState(false);
 
   function requestInformation(urlCategory, urlFirstLetter) {
     setUrlConfig({
@@ -18,7 +19,9 @@ function App() {
       firstLetter: urlFirstLetter,
       page: 1,
     });
+  }
 
+  function sendRequest(event) {
     fetch("/getData", {
       method: "POST",
       headers: {
@@ -34,28 +37,47 @@ function App() {
         console.log(typeof data);
         console.log(data.items);
         setItemList(data.items);
+        if (data.items.length > 0) {
+          setHasQuery(true);
+        } else {
+          setHasQuery(false);
+        }
       });
+    event.preventDefault();
   }
 
   return (
-    <div>
+    <div className={!hasQuery ? "main-container" : "main-container-queried"}>
       <Header />
-      <SelectionArea getInfo={requestInformation} />
-      <div className="item-grid-container">
-        {itemList.map((item) => (
-          <ItemCard
-            key={item.id}
-            className="item-grid-item"
-            iconLSource={item.icon_large}
-            altText={item.name}
-            name={item.name}
-            descript={item.description}
-            type={item.type}
-            isMem={item.members}
-          />
-        ))}
+      <div
+        className={
+          !hasQuery ? "content-container" : "content-container-queried"
+        }
+      >
+        <h1>
+          Search For Items in the <br />
+          Grand Exchange.
+        </h1>
+        <p>
+          Select a category and a first letter to find an item listed in the GE:
+        </p>
+        <SelectionArea getInfo={requestInformation} sendRequest={sendRequest} />
+        <div className="item-grid-container">
+          {itemList.map((item) => (
+            <ItemCard
+              key={item.id}
+              className="item-grid-item"
+              iconLSource={item.icon_large}
+              altText={item.name}
+              name={item.name}
+              descript={item.description}
+              type={item.type}
+              isMem={item.members}
+            />
+          ))}
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }

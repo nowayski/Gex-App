@@ -3,7 +3,8 @@ import React from "react";
 function Header() {
   return (
     <header>
-      <h1>Grand Exchange Item</h1>
+      <h1>GEX Search.</h1>
+      
     </header>
   );
 }
