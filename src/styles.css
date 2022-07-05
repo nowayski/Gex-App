@@ -30,23 +30,6 @@ footer {
   height: 2.5rem;
 }
 
-.itemCard {
-  margin: 10px;
-  padding: 10px;
-  background-color: #222831;
-  text-align: center;
-  width: fit-content;
-}
-
-.itemCard h1 {
-  font-size: 1.5em;
-  color: #EEEEEE;
-}
-
-.itemCard p {
-  text-align: left;
-  color: #EEEEEE;
-}
 
 /* Dropdown Button */
 .dropbtn {
@@ -99,11 +82,55 @@ footer {
 
 .grid-container{
   display: grid;
-  grid-template-columns: 200px 200px;
-
+  grid-template-columns: 200px 200px 200px;
 }
 
 .grid-item{
+  max-width: fit-content;
+  margin: 20px;
+  text-align: left;
+}
+
+.grid-button{
+  margin: 10px;
+  background-color: #FFD369;
+  color: #222831;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: bolder;
+  border: none;
+}
+
+.grid-button:hover {background-color: #222831; color:#EEEEEE;}
+
+/*Item card stylings*/
+
+.itemCard {
+  margin: 10px;
+  padding: 10px;
+  background-color: #222831;
+  text-align: center;
+  width: 20em;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+}
+
+.itemCard h1 {
+  font-size: 1.5em;
+  color: #EEEEEE;
+}
+
+.itemCard p {
+  text-align: left;
+  color: #EEEEEE;
+}
+
+.item-grid-container{
+  display: grid;
+  grid-template-columns: 25em 25em 25em 25em;
+}
+
+.item-grid-item{
   max-width: fit-content;
   margin: 20px;
   text-align: left;

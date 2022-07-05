@@ -1,28 +1,21 @@
-import React,{useState} from "react";
-import categories from "../../DataFiles/categories";
-
-function getKeyByValue(object, value) {
-  return Object.keys(object).find((key) => object[key] === value);
-}
+import React from "react";
 
 
 function DropDown(props) {
-const catVals = Object.values(categories);
-const [isShowing, setIsShowing] = useState(false);
+const catVals = Object.values(props.dropDownList);
 
 function selectionHandler(event){
     let val = event.target.textContent;
     props.clickCategory(val);
-    setIsShowing(false);
 }
 
   return (
     <div className="dropdown">
-      <button className="dropbtn">Categories</button>
+      <button className="dropbtn">{props.buttonText}</button>
       <div className="dropdown-content">
-        {catVals.map((val) => {
+        {catVals.map((val, index) => {
           return (
-            <p onClick={selectionHandler} key={val}>
+            <p id={index} onClick={selectionHandler} key={val}>
               {val}
             </p>
           );
