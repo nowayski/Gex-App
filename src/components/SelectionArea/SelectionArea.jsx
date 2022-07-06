@@ -73,7 +73,12 @@ function SelectionArea(props) {
       </div>
       <div className="grid-item">
         <form onSubmit={props.sendRequest}>
-          <input type="submit" onClick={clickHandler} className="grid-button" value="Submit"/>
+          <input
+            type="submit"
+            onClick={clickHandler}
+            className="grid-button"
+            value="Submit"
+          />
         </form>
       </div>
     </div>

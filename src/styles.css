@@ -5,60 +5,29 @@
 }
 
 html {
-  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-family: "Zen Kaku Gothic New", sans-serif;
   font-weight: 600;
+  overflow: auto;
 }
 
 body {
-  background-color: black;
-  width:100%;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
-  }
+  overflow: auto;
+}
 
-  button{
-    border-radius: 12px;
-  }
+button {
+  border-radius: 12px;
+}
 
-  input{
-    border-radius: 6px;
-  }
- /* -------------------------------------------------------------------------------------------------------------- */
+input {
+  border-radius: 6px;
+}
+/* -------------------------------------------------------------------------------------------------------------- */
 
 /* STYLES FOR CONTAINERS IN ORDER TO 
 DYNAMICALLY CHANGE FOR THE AMOUNT OF 
 ITEM CARDS */
 
-.main-container{
-  margin: 40px;
-  background-color: white;
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  text-align: center;
-  height: 95%;
-  width: 95%;
-}
-
-.main-container-queried{
-  margin: 40px;
-  background-color: white;
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  text-align: center;
-  height: 95%;
-  width: 95%;
-  height:100%;
-  overflow: auto;
-}
-
-.content-container{
+.content-container {
   background-color: #111114;
   position: absolute;
   margin-left: auto;
@@ -66,33 +35,19 @@ ITEM CARDS */
   left: 0;
   right: 0;
   text-align: center;
-  height: 85%;
-  width: 95%;
+  height: 100%;
+  width: 100%;
 }
 
-.content-container-queried{
-  background-color: #111114;
-  position: absolute;
-  display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  text-align: center;
-  height: fit-content;
-  width: 95%;
-  /* height: 85%; */
-}
-
-.content-container h1, .content-container-queried h1{
+.content-container h1 {
   color: white;
   text-align: center;
-  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-family: "Zen Kaku Gothic New", sans-serif;
   font-weight: 900;
-  font-size:5rem;
+  font-size: 5rem;
 }
 
-.content-container p, .content-container-queried p{
+.content-container p{
   color: #6d7578;
   font-size: large;
   margin: 20px;
@@ -100,26 +55,30 @@ ITEM CARDS */
 
 /* -------------------------------------------------------------------------------------------------------------- */
 /* HEADER AND FOOTER STYLES */
-header {
+header{
   /* background-color: #eeeeee; */
-  text-align: left;
-  height: 80px;
+  text-align: center;
   width: fit-content;
-  margin: auto -16px;
+  margin: auto;
   padding: 16px 32px;
-  color: black;
+  color: #ffd369;
+  text-align: center;
+  font-family: "Zen Kaku Gothic New", sans-serif;
   font-weight: 900;
+  font-size: 1.5rem;
 }
 
 footer {
   position: absolute;
-  color: white;
-  position: absolute; 
-  left: 0; 
-  right: 0; 
+  display: block;
+  color: black;
+  left: 0;
+  right: 0;
   bottom: 0;
-  margin-left: auto; 
-  margin-right: auto; 
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  height: 50px;
   width: fit-content;
 }
 
@@ -131,7 +90,7 @@ footer {
   margin: 10px;
   width: 10rem;
   height: 4rem;
-  background-color: #FFD369;
+  background-color: #ffd369;
   color: black;
   padding: 16px;
   font-size: 16px;
@@ -150,7 +109,7 @@ footer {
   position: absolute;
   background-color: white;
   min-width: fit-content;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   max-height: 300px;
   overflow-y: scroll;
@@ -165,45 +124,52 @@ footer {
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content p:hover {background-color: #FFD369;}
+.dropdown-content p:hover {
+  background-color: #ffd369;
+}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #111114; color:white; border-color:#FFD369}
-
+.dropdown:hover .dropbtn {
+  background-color: #111114;
+  color: white;
+  border-color: #ffd369;
+}
 
 /* -------------------------------------------------------------------------------------------------------------- */
 /* SELECTION AREA GRID STYLES, FOR THE TWO DROP DOWNS, TWO SELECTIONS AND ONE BUTTON */
 
-.grid-container{
+.grid-container {
   display: grid;
   grid-template-columns: 250px 250px 250px;
   position: relative;
   justify-content: center;
 }
 
-.grid-item{
+.grid-item {
   max-width: fit-content;
   margin: 20px;
   text-align: center;
 }
 
-.grid-button{
+.grid-button {
   margin: 10px;
   background-color: #111114;
   color: white;
   padding: 16px;
   font-size: 16px;
   font-weight: bolder;
-  border-color: #FFD369;
+  border-color: #ffd369;
   text-align: center;
   width: 10rem;
   height: 4rem;
 }
 
-.selection-area{
+.selection-area {
   margin: 10px;
   color: #222831;
   padding: 16px;
@@ -215,7 +181,10 @@ footer {
   text-align: center;
 }
 
-.grid-button:hover {background-color: #FFD369; color:#111114;}
+.grid-button:hover {
+  background-color: #ffd369;
+  color: #111114;
+}
 
 /* -------------------------------------------------------------------------------------------------------------- */
 /* STYLES FOR ITEM CARDS AND ITEM CARD GRIDS */
@@ -226,8 +195,11 @@ footer {
   background-color: #141417;
   text-align: center;
   width: 20em;
+  height: fit-content;
   overflow: auto;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   border-radius: 5px;
 }
 
@@ -241,14 +213,50 @@ footer {
   color: white;
 }
 
-.item-grid-container{
-  display: grid;
+.item-grid-container {
+  display: flex;
+  flex-wrap: wrap;
   grid-template-columns: 25em 25em 25em;
   justify-content: center;
 }
 
-.item-grid-item{
+.item-grid-item {
   max-width: fit-content;
+  max-height: fit-content;
   margin: 20px;
   text-align: center;
+}
+
+.itemCard img {
+  padding: 20px;
+  max-width: 60%;
+  max-height: 40%;
+}
+
+.itemCard button {
+  background-color: #8c0a22;
+  font-size: 1em;
+  width: 30%;
+  border: none;
+  color: white;
+}
+
+.itemCard button:hover {
+  background-color: #ffd369;
+  color: #111114;
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
+/* STYLES FOR SEARCH BAR */
+
+.search-bar {
+  margin: 10px;
+  color: #222831;
+  padding: 16px;
+  font-size: 0.8rem;
+  width: 40rem;
+  height: 1rem;
+  overflow-wrap: normal;
+  font-weight: bolder;
+  text-align: left;
 }

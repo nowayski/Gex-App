@@ -3,9 +3,9 @@ import React from "react";
 function Description(props) {
   return (
     <div>
-      <p>{props.desc}</p>
-      <p>Type: {props.type}</p>
-      <p>Members: {props.isMem}</p>
+      <p>Item ID: {props.itemID}</p>
+      <p>Price: {props.price}</p>
+      <p>As of: {props.timeStamp}</p>
     </div>
   );
 }

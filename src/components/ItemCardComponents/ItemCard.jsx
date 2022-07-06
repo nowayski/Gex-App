@@ -5,10 +5,11 @@ import Description from "./Description";
 function ItemCard(props) {
 
   return (
-    <div className="itemCard">
+    <div  className="itemCard">
       <h1>{props.name}</h1>
       <Image imgSrc={props.iconLSource} altDesc={props.altText} />
-      <Description desc={props.descript} type={props.type} isMem={props.isMem} />
+      <Description itemID={props.itemID} price={props.price} timeStamp={props.timeStamp} />
+      <button onClick={() => props.clickHandler(props.id)}>Remove</button>
     </div>
   );
 }
