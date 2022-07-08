@@ -80,7 +80,6 @@ function ItemSearch(props) {
         .then((data) => {
           if (data.success !== false) {
             Object.keys(data).forEach((key) => {
-              console.log(data[key]);
               setItemList((prevValues) => {
                 return [
                   ...prevValues,
@@ -135,6 +134,7 @@ function ItemSearch(props) {
           <ItemCard
             key={index}
             id={index}
+            itemCardClickHandler={props.itemCardClickHandler}
             className="item-grid-item"
             iconLSource={item.imageUrl}
             altText={item.name}

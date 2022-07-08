@@ -1,43 +1,47 @@
 import React, { useEffect, useState } from "react";
 import Header from "./MetaComponents/Header";
 import ItemSearch from "./SelectionArea/ItemSearch";
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from "recharts";
+import ExpandedItem from "./ItemCardComponents/ExpandedItem";
 
 function App() {
   const [hasQuery, setHasQuery] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [graphData, setGraphData] = useState();
 
-  const data = [
-    { name: "Page A", uv: 400, pv: 2400, amt: 2400 },
-    { name: "Page B", uv: 200, pv: 2400, amt: 2400 },
-    { name: "Page C", uv: 100, pv: 2400, amt: 2400 },
-  ];
+  let expandItem = {
+    img: "",
+    id: 0,
+    price: 0,
+    timeStamp: ""
+  };
 
-  function getGraphData() {
-    fetch(
-      "https://api.weirdgloop.org/exchange/history/rs/last90d?name=salmon",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "User-Agent": "GEX Query App",
-        },
-      }
-    )
-      .then((res) => res.json())
+  function readData(event) {
+    console.log("Reading Data");
+    fetch(`/getPriceHistory?name=${event.target.id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
       .then((data) => {
-        return data;
+        setGraphData(Object.values(data)[0]);
       })
       .catch((error) => console.log(error));
   }
 
+  function itemCardClickHandler(event) {
+    readData(event);
+    
+    setExpanded(true);
+  }
+
+  function expandedCardClickHandler() {
+    setExpanded(false);
+  }
 
   return (
     <div className="content-container">
@@ -53,15 +57,13 @@ function App() {
         <br />
         Click an item to view price history information.
       </p>
-      <ItemSearch setQuery={setHasQuery} />
-
-      <LineChart width={500} height={300} data={data}>
-        <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-        <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-      </LineChart>
+      <ItemSearch
+        itemCardClickHandler={itemCardClickHandler}
+        setQuery={setHasQuery}
+      />
+      {expanded ? (
+        <ExpandedItem expand={expandedCardClickHandler} graphData={graphData} />
+      ) : null}
     </div>
   );
 }

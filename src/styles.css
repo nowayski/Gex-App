@@ -23,7 +23,7 @@ input {
   border-radius: 6px;
 }
 
-p{
+p {
   color: #6d7578;
   font-size: large;
   margin: 20px;
@@ -44,6 +44,7 @@ ITEM CARDS */
   text-align: center;
   height: fit-content;
   width: 100%;
+  height:100%;
 }
 
 .content-container h1 {
@@ -54,7 +55,7 @@ ITEM CARDS */
   font-size: 5rem;
 }
 
-.content-container p{
+.content-container p {
   color: #6d7578;
   font-size: large;
   margin: 20px;
@@ -62,7 +63,7 @@ ITEM CARDS */
 
 /* -------------------------------------------------------------------------------------------------------------- */
 /* HEADER AND FOOTER STYLES */
-header{
+header {
   /* background-color: #eeeeee; */
   text-align: center;
   width: fit-content;
@@ -203,7 +204,7 @@ footer {
   background-color: #141417;
   text-align: center;
   width: 20em;
-  height: 22em;
+  height: 24em;
   overflow: auto;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
@@ -227,10 +228,10 @@ footer {
   max-height: 40%;
 }
 
-.itemCard button {
+.itemCard .closeButton {
   position: absolute;
   top: 0;
-  right:0;
+  right: 0;
   background-color: #8c0a22;
   font-size: 1em;
   width: 7%;
@@ -243,9 +244,33 @@ footer {
   font-size: 1.2em;
 }
 
-.itemCard button:hover {
+.itemCard .closeButton:hover {
   background-color: #ffd369;
   color: #111114;
+}
+
+.itemCard .expandButton {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  background-color: white;
+  font-size: 1em;
+  width: 45%;
+  height: 5%;
+  border: none;
+  color: black;
+  font-size: 1.0rem;
+  font-weight: bold;
+
+}
+
+.expandButton:hover{
+  background-color: #ffd369;
+  color: white;
 }
 
 .item-grid-container {
@@ -275,4 +300,52 @@ footer {
   overflow-wrap: normal;
   font-weight: bolder;
   text-align: left;
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
+/* STYLES FOR EXPANDED ITEM CARD DIV */
+
+.expanded-div {
+  position: absolute;
+  top: 10%;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  height: 80%;
+  width: 80%;
+  z-index: 5;
+  background-color: #222831;
+}
+
+.expanded-div button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #8c0a22;
+  font-size: 1em;
+  width: 1.1em;
+  height: 1.1em;
+  margin-top: 5px;
+  margin-right: 5px;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  font-size: 1.2em;
+}
+
+.expanded-div button:hover {
+  background-color: #ffd369;
+  color: #111114;
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
+/* GRAPH STYLES FOR POSITIONING */
+
+.graphDiv{
+  position: absolute;
+  left:15%;
+  bottom:0;
+  margin-left: auto;
+  margin-right: auto;
 }
