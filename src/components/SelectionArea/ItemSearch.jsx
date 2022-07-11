@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ItemCard from "../ItemCardComponents/ItemCard";
+import useDebounce from "../../useDebounce";
 
 function capitalizeFirstLetter(string) {
   string = string.toLowerCase();
@@ -32,6 +33,9 @@ function ItemSearch(props) {
   const [textVal, setTextVal] = useState("");
   const [itemList, setItemList] = useState([]);
   const [validItemText, setValidItemText] = useState("");
+  const [favourites, setFavourites] = useState(
+    localStorage.getItem("favourites") ?? ""
+  );
 
   //This is an async function that utilises await so it acts as a proper
   //validity, as the back end will then only get issues a POST request
@@ -55,6 +59,7 @@ function ItemSearch(props) {
     let newVal = event.target.value;
     setTextVal(newVal);
   }
+
   //Handler function: This will firstly turn the current textVal from the form's input into a usable format
   //for the url of the image.
   //Then it will check to see if it's a valid image, and use the /getData POST fetch as a callback function
@@ -93,9 +98,8 @@ function ItemSearch(props) {
                 ];
               });
             });
-          }
-          else{
-            setValidItemText("Please enter a valid search.")
+          } else {
+            setValidItemText("Please enter a valid search.");
           }
         });
       setTextVal("");
@@ -105,6 +109,7 @@ function ItemSearch(props) {
     props.setQuery(true);
     event.preventDefault();
   }
+
   //Simple delete item handler, that utilises an id check to determine which list item it is.
   function deleteItem(id) {
     setItemList((prevItems) => {
@@ -115,6 +120,54 @@ function ItemSearch(props) {
     if (itemList.length === 1) {
       props.setQuery(false);
     }
+  }
+
+  function saveFavourites() {
+    let toWrite = "";
+    itemList.forEach((item) => (toWrite += item.name + ","));
+    toWrite = toWrite.slice(0,-1);
+    localStorage.setItem("favourites", toWrite);
+    setFavourites(localStorage.getItem("favourites"));
+  }
+
+  function getFavourites() {
+    let inputList = splitThenURL(favourites);
+    checkValidImages(inputList).then((url) => {
+      setValidItemText("");
+      fetch("/getData", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ name: favourites}),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.success !== false) {
+            Object.keys(data).forEach((key) => {
+              setItemList((prevValues) => {
+                return [
+                  ...prevValues,
+                  {
+                    imageUrl: makeSingleUrl(key),
+                    name: key,
+                    itemID: data[key].id,
+                    price: data[key].price.toLocaleString("en-US"),
+                    timeStamp: data[key].timestamp.substring(0, 10),
+                  },
+                ];
+              });
+            });
+          } else {
+            setValidItemText("Please enter a valid search.");
+          }
+        });
+      setTextVal("");
+      return "";
+    });
   }
 
   return (
@@ -129,12 +182,17 @@ function ItemSearch(props) {
         />
       </form>
       {validItemText !== "" ? <p>{validItemText}</p> : <p></p>}
+      <button onClick={saveFavourites} className="favouriteButton">
+        Save Favourites
+      </button>
+      <button onClick={getFavourites} className="favouriteButton">
+        Load Favourites
+      </button>
       <div className="item-grid-container">
         {itemList.map((item, index) => (
           <ItemCard
             key={index}
             id={index}
-            itemCardClickHandler={props.itemCardClickHandler}
             className="item-grid-item"
             iconLSource={item.imageUrl}
             altText={item.name}
