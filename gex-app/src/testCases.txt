@@ -1,0 +1,82 @@
+Screen Sizes:
+Small (Smartphones) - 0-480px
+Medium (Small Laptop / Tablets) - 481-1024px
+Large (Laptops, Desktop, Smart TV) - More than 1025px 
+
+Format:
+Test Case - Test Procedure 1
+          -- Test Procedure 2
+          - Expected Result for procedure 1.
+          -- Expected Result for procedure 2.
+
+* Test number - Pass/Fail
+
+1. GUI:
+A. Default GUI Layout   - Open the homepage, and press refresh button. 
+                        - All text and buttons displayed properly (Header, Title, Paragraphs, Search bar, Favourite Buttons).
+
+B. Default GUI Layout Responsiveness - Open Homepage, press refresh, resize window to next breakpoint, press refresh, etc.
+                                     - On all sizes of screen: All text and buttons 
+                                       display properly (Header, Title, Paragraphs, Search bar, Favourite Buttons).
+
+C. After Search: Grid Layout - Test search: salmon, cod, abyssal whip, iron dagger, bronze spear, bronze pickaxe, red partyhat, monk's robe (top)
+                               (Paste this 20 times).
+                             - All item card components in the grid display regardless of item or amount of items.
+                               
+
+D. C. After Search Responsiveness: Grid Layout - Open Homepage, Test search: salmon, cod, abyssal whip, iron dagger, bronze spear, bronze pickaxe, red partyhat, monk's robe (top)
+                                                 (Paste this 20 times). Resize to next breakpoint. Repeat till all breakpoints covered.
+                                               - For ALL sizes of screen:
+                                                 All item card components in the grid display regardless of item or amount of items.
+                                  
+
+D. Item Card Expanded: - Open Homepage, Test Search: salmon, click the "Price History" button on the item card.
+                       - Expanded card appears and displays: Image, Item, Price, As of, Heading, graph and Back button.
+
+E. Item Card Expanded Responsiveness - Open Homepage, Test Search: salmon, click the "Price History" button on the item card.
+                                       Resize Screen to next breakpoint, repeat till all breakpoints covered.
+                                     - Expanded card appears and displays: Image, Item, Price, As of, Heading, graph and Back button.
+
+
+F. Item Card Expanded: Back Button: - Open Homepage, Test Search: salmon, cod, trout click the "Price History" button on the salmon item card.
+                                      Then click the "Back" button.
+                                    - The salmon item card reappears in the same place it was before it was expanded.
+
+2. Search Functions:
+
+A. Search single item - Open homepage, type "salmon" in the search bar and wait for 1 second.
+                      -- Repeat but with rubbish text "adjiajwd".
+
+                      - Salmon card appears at the bottom of the page.
+                      -- Get warning text below search bar: "Please enter a valid search."
+
+B. Search multiple items - Open homepage, type "salmon, cod, trout, lobster, shark, swordfish" into the search bar and wait 1 second.
+                         -- Repeat for no commas "salmon cod trout lobster shark swordfish".
+                         --- Repeat for random text with valid inputs "aiwdj, salmon, awdaw, daiwjw, cod, awjidiawjdia, trout"
+
+                         - A grid is populated of all the entered searches.
+                         -- Get warning text below search bar: "Please enter a valid search."
+                         --- the following item cards appear with no warning text: Salmon, Cod and Trout (Order not important).
+
+
+3. Favouriting Functions:
+
+A. Save Favourites Function: Single Item - Open homepage, type "salmon" in the search bar and wait for 1 second.
+                                           After item card appears press the "Save Favourites" button.
+                                         - No errors appear and the page does not refresh.
+
+B. Get Favourites Function: Single Item - After test A has succeeded, refresh the page and press the "Load Favourites" Button.
+                                        - The Item Card named "Salmon" appears in the grid.
+
+C. Save Favourites Function: Multiple Items - Open homepage, type "salmon, cod, tuna, trout, shark" in the search bar and wait for 1 second.
+                                           After item cards appears press the "Save Favourites" button.
+                                         - No errors appear and the page does not refresh.
+
+D. Get Favourites Function: Multiple Items - After test C has succeeded, refresh the page and press the "Load Favourites" Button.
+                                           - The Item Cards named salmon, cod, tuna, trout, shark appear in the grid.
+
+E. Get Favourites Function: Stress Test - Repeat Test A for single save favourites and refresh. Click the "Load Favourites" Button
+                                          as many times as possible during 5 seconds.
+                                        -- Repeat but click once every second for 5 seconds.
+                                        - A single Salmon Item card should appear.
+                                        -- 5 Salmon Item cards should appear.
