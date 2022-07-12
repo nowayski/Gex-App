@@ -8,6 +8,7 @@ import {
   XAxis,
   YAxis,
   Tooltip,
+  ResponsiveContainer,
 } from "recharts";
 
 function ItemCard(props) {
@@ -48,7 +49,7 @@ function ItemCard(props) {
       classToRemove = "expanded-div";
     } else {
       setButtonText("Back");
-      
+
       classToRemove = "itemCard";
       classToSet = "expanded-div";
     }
@@ -58,12 +59,15 @@ function ItemCard(props) {
 
   return (
     <div className="itemCard">
-      <button
-        className="closeButton"
-        onClick={() => props.clickHandler(props.id)}
-      >
-        X
-      </button>
+      {!expanded ? (
+        <button
+          className="closeButton"
+          onClick={() => props.clickHandler(props.id)}
+        >
+          X
+        </button>
+      ) : null}
+
       <h1>{props.name}</h1>
       <Image imgSrc={props.iconLSource} altDesc={props.altText} />
       <Description
@@ -74,19 +78,24 @@ function ItemCard(props) {
 
       {expanded ? (
         <div className="graphDiv">
-          <LineChart width={900} height={400} data={graphData}>
-            <Line
-              type="monotone"
-              dataKey="price"
-              stroke="#ffd369"
-              dot={false}
-              activeDot={{ r: 8 }}
-            />
-            <CartesianGrid strokeDasharray="0" />
-            <XAxis dataKey="timestamp" />
-            <YAxis />
-            <Tooltip />
-          </LineChart>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart
+              data={graphData}
+              // margin={{ top: 20, right: 10, left: -20, bottom: 0 }}
+            >
+              <Line
+                type="monotone"
+                dataKey="price"
+                stroke="#ffd369"
+                dot={false}
+                activeDot={{ r: 8 }}
+              />
+              <CartesianGrid strokeDasharray="0" />
+              <XAxis dataKey="timestamp" />
+              <YAxis />
+              <Tooltip />
+            </LineChart>
+          </ResponsiveContainer>
         </div>
       ) : null}
 

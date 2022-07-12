@@ -18,6 +18,8 @@ function App() {
         Spear".
         <br />
         Click an item to view price history information.
+        <br />
+        When you are satisfied with your list, press save favourites (persists through reload).
       </p>
       <ItemSearch setQuery={setHasQuery} />
     </div>
