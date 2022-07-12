@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "16.51.1",
+    "node": "16.51.1"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -53,5 +53,5 @@
     "url": "https://github.com/nowayski/Gex-App/issues"
   },
   "homepage": ".",
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:3001"
 }
