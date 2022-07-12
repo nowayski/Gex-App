@@ -14,7 +14,7 @@ app.use(cors());
 const PORT = process.env.PORT || 3001;
 
 // Have Node serve the files for our built React app
-app.use(express.static(path.resolve(__dirname, '../gex-app/build')));
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../gex-app/build', 'index.html'));
