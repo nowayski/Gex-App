@@ -41,7 +41,9 @@ function ItemCard(props) {
   function itemCardClickHandler(event) {
     let classToSet = "";
     let classToRemove = "";
-    readData(event);
+    if (!expanded) {
+      readData(event);
+    }
     setExpanded(!expanded);
     if (expanded) {
       setButtonText("Price History");

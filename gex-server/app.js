@@ -1,3 +1,4 @@
+
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -16,10 +17,9 @@ const PORT = process.env.PORT || 3001;
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, 'build')));
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-
 
 function formatTimestamp(timestamp) {
   const date = new Date(timestamp);
@@ -55,7 +55,6 @@ app.get('/getPriceHistory', urlEncoder, (req, res) => {
       console.log(error);
       return;
     });
-
 });
 
 
@@ -92,12 +91,6 @@ app.post('/getData', urlEncoder, (req, res) => {
       console.log(error);
       return;
     });
-  // if (req.body.category == null || req.body.firstLetter == '') {
-  //   res.json({
-  //     'total': 0,
-  //     'items' : [{}]
-  //   });
-  // } else {
 
 });
 
