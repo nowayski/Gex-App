@@ -48,5 +48,6 @@
   "bugs": {
     "url": "https://github.com/nowayski/Gex-App/issues"
   },
-  "homepage": "."
+  "homepage": ".",
+  "proxy" : "http://localhost:3001"
 }
