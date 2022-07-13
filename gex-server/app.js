@@ -21,10 +21,6 @@ app.get('*', (req, res) => {
 });
 
 
-app.get('/', (req, res) => {
-  res.send("Hello World");
-});
-
 function formatTimestamp(timestamp) {
   const date = new Date(timestamp);
   const datevalues = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
