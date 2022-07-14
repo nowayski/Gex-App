@@ -11,6 +11,19 @@ function ItemSearch(props) {
     localStorage.getItem("favourites") ?? ""
   );
 
+  const [width, setWidth] = useState(0);
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+    handleWindowSizeChange();
+  }, []);
+
+  const isMobile = width < 768;
+  console.log(isMobile);
+
   //This function will allow any on click or any other function to be delayed once clicked.
   //This was added in order to stop the user spam clicking the "getFavourites" button.
   function debounceFunction(func, timeout = 300) {
@@ -124,7 +137,9 @@ function ItemSearch(props) {
   }
 
   useEffect(() => {
-    populateList(textVal);
+    if (!isMobile) {
+      populateList(textVal);
+    }
   }, [debouncedValue]);
 
   //Simple delete item handler, that utilises an id check to determine which list item it is.
@@ -155,8 +170,12 @@ function ItemSearch(props) {
   function getFavourites() {
     populateList(favourites);
   }
-
   const favouriteHandler = debounceFunction(() => getFavourites());
+
+  function mobileSubmitHandler() {
+    populateList(textVal);
+    setTextVal("");
+  }
 
   return (
     <div>
@@ -167,6 +186,11 @@ function ItemSearch(props) {
         value={textVal}
         placeholder="Start typing to search for an item.."
       />
+      {isMobile ? (
+        <button onClick={mobileSubmitHandler} className="submitButton">
+          Submit
+        </button>
+      ) : null}
       {validItemText !== "" ? <p>{validItemText}</p> : <p></p>}
       <button onClick={saveFavourites} className="favouriteButton">
         Save Favourites

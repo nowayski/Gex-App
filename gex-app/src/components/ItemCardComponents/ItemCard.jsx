@@ -36,6 +36,9 @@ function ItemCard(props) {
       .catch((error) => console.log(error));
   }
 
+
+  function convertDates(){
+  }
   //Expands the item card to have a fixed central property with a higher z-index.
   //Set's a state to expanded, hence making the graph appear.
   function itemCardClickHandler(event) {

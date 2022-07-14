@@ -23,7 +23,9 @@ app.get('/', (req, res) => {
 
 function formatTimestamp(timestamp) {
   const date = new Date(timestamp);
-  const datevalues = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  let year = JSON.stringify(date.getFullYear());
+  year = year.substr(-2);
+  const datevalues = `${date.getDate()}/${date.getMonth() + 1}/${year}`;
   return datevalues;
 }
 

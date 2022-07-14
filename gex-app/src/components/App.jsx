@@ -22,6 +22,7 @@ function App() {
         When you are satisfied with your list, press save favourites (persists through reload).
       </p>
       <ItemSearch setQuery={setHasQuery} />
+      
     </div>
   );
 }

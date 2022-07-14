@@ -200,9 +200,17 @@ footer {
   text-align: center;
 }
 
-.grid-button:hover {
+.grid-button:active {
   background-color: #ffd369;
   color: #111114;
+  transition:0s 0.5;
+}
+
+@media screen and (min-width: 1025px) {
+  .grid-button:hover {
+    background-color: #ffd369;
+    color: #111114;
+  }
 }
 
 /* -------------------------------------------------------------------------------------------------------------- */
@@ -257,9 +265,21 @@ footer {
   font-size: 1.2em;
 }
 
-.itemCard .closeButton:hover {
+.itemCard .closeButton:active {
   background-color: #ffd369;
   color: #111114;
+  transition:0s 0.5;
+}
+@media screen and (min-width: 1025px) {
+  .itemCard .closeButton:hover {
+    background-color: #ffd369;
+    color: #111114;
+  }
+
+  .itemCard .expandButton:hover {
+    background-color: #ffd369;
+    color: white;
+  }
 }
 
 .itemCard .expandButton {
@@ -281,10 +301,12 @@ footer {
   font-weight: bold;
 }
 
-.expandButton:hover {
+.expandButton:active {
   background-color: #ffd369;
   color: white;
+  transition:0s 0.5;
 }
+
 
 .item-grid-container {
   display: flex;
@@ -366,8 +388,8 @@ footer {
     width: 80%;
     text-align: center;
   }
-  
-  .expanded-div h1{
+
+  .expanded-div h1 {
     font-size: 3rem;
   }
 
@@ -397,6 +419,16 @@ footer {
   .expanded-div img {
     position: static;
   }
+
+  .expanded-div .closeButton:hover {
+    background-color: #ffd369;
+    color: #111114;
+  }
+
+  .expanded-div .expandButton:hover {
+    background-color: #ffd369;
+    color: #111114;
+  }
 }
 
 .expanded-div .closeButton {
@@ -416,9 +448,10 @@ footer {
   font-size: 1.2em;
 }
 
-.expanded-div .closeButton:hover {
+.expanded-div .closeButton:active {
   background-color: #ffd369;
   color: #111114;
+  transition:0s 0.5;
 }
 
 .expanded-div .expandButton {
@@ -440,9 +473,10 @@ footer {
   font-weight: bold;
 }
 
-.expandButton:hover {
+.expandButton:active {
   background-color: #ffd369;
   color: white;
+  transition:0s 0.5;
 }
 
 /* -------------------------------------------------------------------------------------------------------------- */
@@ -466,7 +500,7 @@ footer {
     right: 0;
     width: 80%;
     height: 35%;
-  }  
+  }
 }
 /*Desktop*/
 @media screen and (min-width: 1030px) {
@@ -509,8 +543,44 @@ footer {
     max-width: 200px;
   }
 }
-
-.favouriteButton:hover {
+@media screen and (min-width: 1025px) {
+  .favouriteButton:hover {
+    background-color: #ffd369;
+    color: white;
+  }
+}
+.favouriteButton:active {
   background-color: #ffd369;
   color: white;
+  transition:0s 0.5;
+}
+
+.submitButton {
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  background-color: white;
+  font-size: 1em;
+  width: 5rem;
+  max-width: 6rem;
+  height: 2.5rem;
+  border: none;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.submitButton:active {
+  background-color: #8c0a22;
+  color: white;
+  transition:0s 0.5;
+}
+
+@media screen and (min-width: 1025px) {
+  .submitButton:hover {
+    background-color: #8c0a22;
+    color: white;
+  }
 }
