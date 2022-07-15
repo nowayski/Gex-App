@@ -179,8 +179,9 @@ function ItemSearch(props) {
   }
   const favouriteHandler = debounceFunction(() => getFavourites());
 
-  function mobileSubmitHandler() {
+  function mobileSubmitHandler(event) {
     populateList(textVal);
+    event.preventDefault();
   }
 
   return (
