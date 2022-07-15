@@ -44,7 +44,7 @@ function ItemSearch(props) {
   //the rs3 wiki.
   function splitThenURL(vals) {
     let itemList = vals.split(",");
-    itemList = itemList.filter(item => item === " ");
+    itemList = itemList.filter((item) => item === " ");
     itemList = itemList.map((item) => item.replace(/^\s+/g, ""));
     itemList = itemList.map((item) => item.replace(/ /g, "_"));
     itemList = itemList.map((item) => capitalizeFirstLetter(item));
@@ -110,9 +110,7 @@ function ItemSearch(props) {
         .then((data) => {
           if (data.success !== false) {
             Object.keys(data).forEach((key) => {
-              if (
-                !itemList.find((e) => e.itemID === data[key].id)
-              ) {
+              if (!itemList.find((e) => e.itemID === data[key].id)) {
                 setItemList((prevValues) => {
                   return [
                     ...prevValues,
@@ -164,9 +162,9 @@ function ItemSearch(props) {
     if (faves === "") {
       newFaves = name + ",";
     } else if (faves?.includes(name) === false) {
-      newFaves = faves +  name + "," ;
+      newFaves = faves + name + ",";
     } else {
-      newFaves = faves.replaceAll(name+ ",", "");
+      newFaves = faves?.replaceAll(name + ",", "");
     }
     localStorage.setItem("favourites", newFaves);
   }
@@ -216,8 +214,12 @@ function ItemSearch(props) {
             timeStamp={item.timeStamp}
             clickHandler={deleteItem}
             itemFavouriteHandler={addToFavourites}
-            favourited = {localStorage.getItem("favourites")?.includes(item.name) ? true : false }
-            height = {height}
+            favourited={
+              localStorage.getItem("favourites")?.includes(item.name)
+                ? true
+                : false
+            }
+            height={height}
           />
         ))}
       </div>
