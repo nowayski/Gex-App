@@ -7,14 +7,13 @@ function ItemSearch(props) {
   const [itemList, setItemList] = useState([]);
   const [validItemText, setValidItemText] = useState("");
   const debouncedValue = useDebounce(textVal, 500);
-  const [favourites, setFavourites] = useState(
-    localStorage.getItem("favourites") ?? ""
-  );
 
   const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
 
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
   }
 
   useEffect(() => {
@@ -22,7 +21,6 @@ function ItemSearch(props) {
   }, []);
 
   const isMobile = width < 768;
-  console.log(isMobile);
 
   //This function will allow any on click or any other function to be delayed once clicked.
   //This was added in order to stop the user spam clicking the "getFavourites" button.
@@ -46,6 +44,7 @@ function ItemSearch(props) {
   //the rs3 wiki.
   function splitThenURL(vals) {
     let itemList = vals.split(",");
+    itemList = itemList.filter(item => item === " ");
     itemList = itemList.map((item) => item.replace(/^\s+/g, ""));
     itemList = itemList.map((item) => item.replace(/ /g, "_"));
     itemList = itemList.map((item) => capitalizeFirstLetter(item));
@@ -111,25 +110,28 @@ function ItemSearch(props) {
         .then((data) => {
           if (data.success !== false) {
             Object.keys(data).forEach((key) => {
-              setItemList((prevValues) => {
-                return [
-                  ...prevValues,
-                  {
-                    imageUrl: makeSingleUrl(key),
-                    name: key,
-                    itemID: data[key].id,
-                    price: data[key].price.toLocaleString("en-US"),
-                    timeStamp: data[key].timestamp.substring(0, 10),
-                  },
-                ];
-              });
-
-              setTextVal("");
+              if (
+                !itemList.find((e) => e.itemID === data[key].id)
+              ) {
+                setItemList((prevValues) => {
+                  return [
+                    ...prevValues,
+                    {
+                      imageUrl: makeSingleUrl(key),
+                      name: key,
+                      itemID: data[key].id,
+                      price: data[key].price.toLocaleString("en-US"),
+                      timeStamp: data[key].timestamp.substring(0, 10),
+                    },
+                  ];
+                });
+              }
             });
           } else if (data.success === false && textVal !== "") {
             setValidItemText("Please enter a valid search.");
           }
         });
+
       return "";
     });
 
@@ -154,27 +156,31 @@ function ItemSearch(props) {
       props.setQuery(false);
     }
   }
-
-  //Once a list has been populated, this click handler will push the list of names
-  //To localStorage as a string.
-  function saveFavourites() {
-    let toWrite = "";
-    itemList.forEach((item) => (toWrite += item.name + ","));
-    toWrite = toWrite.slice(0, -1);
-    localStorage.setItem("favourites", toWrite);
-    setFavourites(localStorage.getItem("favourites"));
+  // localStorage.setItem("favourites", "");
+  //This will individually add starred items to the favourites list.
+  function addToFavourites(name) {
+    let faves = localStorage.getItem("favourites");
+    let newFaves = "";
+    if (faves === "") {
+      newFaves = name + ",";
+    } else if (faves.includes(name) === false) {
+      newFaves = faves +  name + "," ;
+    } else {
+      newFaves = faves.replaceAll(name+ ",", "");
+    }
+    localStorage.setItem("favourites", newFaves);
   }
 
   //This click handler retrieves and issues necessary fetch requests for favourited
   //items.
   function getFavourites() {
-    populateList(favourites);
+    console.log(localStorage.getItem("favourites"));
+    populateList(localStorage.getItem("favourites"));
   }
   const favouriteHandler = debounceFunction(() => getFavourites());
 
   function mobileSubmitHandler() {
     populateList(textVal);
-    setTextVal("");
   }
 
   return (
@@ -192,9 +198,6 @@ function ItemSearch(props) {
         </button>
       ) : null}
       {validItemText !== "" ? <p>{validItemText}</p> : <p></p>}
-      <button onClick={saveFavourites} className="favouriteButton">
-        Save Favourites
-      </button>
       <button onClick={favouriteHandler} className="favouriteButton">
         Load Favourites
       </button>
@@ -211,6 +214,9 @@ function ItemSearch(props) {
             price={item.price}
             timeStamp={item.timeStamp}
             clickHandler={deleteItem}
+            itemFavouriteHandler={addToFavourites}
+            favourited = {localStorage.getItem("favourites").includes(item.name) ? true : false }
+            height = {height}
           />
         ))}
       </div>

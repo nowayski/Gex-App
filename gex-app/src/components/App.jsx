@@ -17,12 +17,10 @@ function App() {
         <br /> Searches may be separated by commas. e.g. "Cod, Salmon, Bronze
         Spear".
         <br />
-        Click an item to view price history information.
-        <br />
-        When you are satisfied with your list, press save favourites (persists through reload).
+        Click an item to view price history information. Favourite with the ★
+        button.
       </p>
       <ItemSearch setQuery={setHasQuery} />
-      
     </div>
   );
 }

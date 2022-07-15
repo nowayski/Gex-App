@@ -54,6 +54,7 @@ ITEM CARDS */
   font-family: "Zen Kaku Gothic New", sans-serif;
   font-weight: 500;
   font-size: 3rem;
+  margin-bottom: 0;
 }
 
 .content-container p {
@@ -167,6 +168,7 @@ footer {
   grid-template-columns: 250px 250px 250px;
   position: relative;
   justify-content: center;
+  
 }
 
 .grid-item {
@@ -203,7 +205,7 @@ footer {
 .grid-button:active {
   background-color: #ffd369;
   color: #111114;
-  transition:0s 0.5;
+  transition: 0s 0.5;
 }
 
 @media screen and (min-width: 1025px) {
@@ -217,11 +219,11 @@ footer {
 /* STYLES FOR ITEM CARDS AND ITEM CARD GRIDS */
 
 .itemCard {
+  transform: translateY(0, 0.5s);
   position: relative;
   margin: 10px;
   padding: 10px;
   top: 0;
-  /* transition: all 0.5s ease-in-out; */
   background-color: #141417;
   text-align: center;
   width: 20em;
@@ -231,6 +233,9 @@ footer {
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   border-radius: 5px;
+
+  transition: all 0.7s;
+
 }
 
 .itemCard h1 {
@@ -268,7 +273,7 @@ footer {
 .itemCard .closeButton:active {
   background-color: #ffd369;
   color: #111114;
-  transition:0s 0.5;
+  transition: 0s 0.5;
 }
 @media screen and (min-width: 1025px) {
   .itemCard .closeButton:hover {
@@ -304,9 +309,8 @@ footer {
 .expandButton:active {
   background-color: #ffd369;
   color: white;
-  transition:0s 0.5;
+  transition: 0s 0.5;
 }
-
 
 .item-grid-container {
   display: flex;
@@ -348,11 +352,9 @@ footer {
 /* STYLES FOR EXPANDED ITEM CARD DIV */
 
 .expanded-div {
-  position: fixed;
-  /* transform: translateX(-50%);
-  transform: translateY(-100%); */
-  height: 90%;
-  width: 90%;
+  position: relative;
+  height: 90vh;
+  width: 90vw;
   right: 0;
   left: 0;
   top: 0;
@@ -361,7 +363,7 @@ footer {
   margin-top: 1.5rem;
   margin-bottom: 50px;
   z-index: 5;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.7s ease-in-out;
   background-color: #141417;
   text-align: center;
 }
@@ -377,6 +379,9 @@ footer {
   max-width: 30%;
   max-height: 30%;
   left: 0;
+}
+.expanded-div h1{
+  font-size: 1.8rem;
 }
 
 /*TABLETS */
@@ -406,7 +411,7 @@ footer {
 /*DESKTOP */
 @media screen and (min-width: 1025px) {
   .expanded-div {
-    position: fixed;
+    position: relative;
     height: 80%;
     width: 80%;
     text-align: left;
@@ -418,6 +423,7 @@ footer {
   }
   .expanded-div img {
     position: static;
+    max-width: 20%;
   }
 
   .expanded-div .closeButton:hover {
@@ -451,7 +457,7 @@ footer {
 .expanded-div .closeButton:active {
   background-color: #ffd369;
   color: #111114;
-  transition:0s 0.5;
+  transition: 0s 0.5;
 }
 
 .expanded-div .expandButton {
@@ -476,7 +482,7 @@ footer {
 .expandButton:active {
   background-color: #ffd369;
   color: white;
-  transition:0s 0.5;
+  transition: 0s 0.5;
 }
 
 /* -------------------------------------------------------------------------------------------------------------- */
@@ -552,7 +558,7 @@ footer {
 .favouriteButton:active {
   background-color: #ffd369;
   color: white;
-  transition:0s 0.5;
+  transition: 0s 0.5;
 }
 
 .submitButton {
@@ -575,7 +581,7 @@ footer {
 .submitButton:active {
   background-color: #8c0a22;
   color: white;
-  transition:0s 0.5;
+  transition: 0s 0.5;
 }
 
 @media screen and (min-width: 1025px) {
@@ -583,4 +589,34 @@ footer {
     background-color: #8c0a22;
     color: white;
   }
+}
+
+.like-button {
+  position: absolute;
+  left: 5%;
+  top: 3%;
+  font-size: 13px;
+  cursor: pointer;
+}
+.like-button:before {
+  font-size: 3em;
+  color: #6d7578;
+  content: "★";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.like-button:after {
+  font-size: 3em;
+  color: #ffd369;
+  content: "★";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s;
+}
+.liked::after {
+  transform: translate(-50%, -50%) scale(1.1);
 }

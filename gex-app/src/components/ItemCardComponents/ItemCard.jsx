@@ -36,44 +36,45 @@ function ItemCard(props) {
       .catch((error) => console.log(error));
   }
 
-
-  function convertDates(){
-  }
   //Expands the item card to have a fixed central property with a higher z-index.
   //Set's a state to expanded, hence making the graph appear.
   function itemCardClickHandler(event) {
-    let classToSet = "";
-    let classToRemove = "";
     if (!expanded) {
       readData(event);
     }
     setExpanded(!expanded);
     if (expanded) {
       setButtonText("Price History");
-      classToSet = "itemCard";
-      classToRemove = "expanded-div";
     } else {
       setButtonText("Back");
-
-      classToRemove = "itemCard";
-      classToSet = "expanded-div";
     }
-    event.target.parentElement.classList.remove(classToRemove);
-    event.target.parentElement.classList.add(classToSet);
+
+    event.target.parentElement.classList.toggle("expanded-div");
+    event.target.parentElement.classList.toggle("itemCard");
+  }
+
+  function itemFavouriteHandler(event) {
+    event.currentTarget.classList.toggle("liked");
+    props.itemFavouriteHandler(props.name);
   }
 
   return (
     <div className="itemCard">
-      {!expanded ? (
+
         <button
           className="closeButton"
           onClick={() => props.clickHandler(props.id)}
         >
           X
         </button>
-      ) : null}
 
-      <h1>{props.name}</h1>
+      <h1>{props.name} </h1>
+
+        <button
+          onClick={itemFavouriteHandler}
+          className={props.favourited ? "like-button liked" : "like-button"}
+        ></button>
+
       <Image imgSrc={props.iconLSource} altDesc={props.altText} />
       <Description
         itemID={props.itemID}
