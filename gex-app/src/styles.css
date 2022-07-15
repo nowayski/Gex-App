@@ -412,8 +412,8 @@ footer {
 @media screen and (min-width: 1025px) {
   .expanded-div {
     position: relative;
-    height: 80%;
-    width: 80%;
+    height: 500px;
+    width: 90%;
     text-align: left;
   }
 

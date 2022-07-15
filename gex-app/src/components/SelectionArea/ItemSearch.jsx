@@ -163,7 +163,7 @@ function ItemSearch(props) {
     let newFaves = "";
     if (faves === "") {
       newFaves = name + ",";
-    } else if (faves.includes(name) === false) {
+    } else if (faves?.includes(name) === false) {
       newFaves = faves +  name + "," ;
     } else {
       newFaves = faves.replaceAll(name+ ",", "");
@@ -216,7 +216,7 @@ function ItemSearch(props) {
             timeStamp={item.timeStamp}
             clickHandler={deleteItem}
             itemFavouriteHandler={addToFavourites}
-            favourited = {localStorage.getItem("favourites").includes(item.name) ? true : false }
+            favourited = {localStorage.getItem("favourites")?.includes(item.name) ? true : false }
             height = {height}
           />
         ))}
