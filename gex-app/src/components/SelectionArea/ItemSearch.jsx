@@ -159,12 +159,14 @@ function ItemSearch(props) {
   function addToFavourites(name) {
     let faves = localStorage.getItem("favourites");
     let newFaves = "";
-    if (faves === "") {
-      newFaves = name + ",";
-    } else if (faves?.includes(name) === false) {
-      newFaves = faves + name + ",";
-    } else {
-      newFaves = faves?.replaceAll(name + ",", "");
+    if (name !== undefined) {
+      if (faves === null) {
+        newFaves = name + ",";
+      } else if (faves?.includes(name) === false) {
+        newFaves = faves + name + ",";
+      } else {
+        newFaves = faves?.replaceAll(name + ",", "");
+      }
     }
     localStorage.setItem("favourites", newFaves);
   }
